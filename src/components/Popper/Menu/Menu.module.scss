@@ -1,0 +1,24 @@
+// menu
+.menuItems {
+    width: 240px;
+
+    .menuItem {
+        display: block;
+        width: 100%;
+        margin-left: 0;
+        padding: 10px 16px;
+        text-align: left;
+        font-size: 16px;
+        line-height: 22px;
+        font-weight: 600;
+        color: #0f1118;
+
+        &:hover {
+            background-color: rgba(22, 24, 35, 0.03);
+        }
+    }
+}
+
+.menu-popper {
+    padding-bottom: 8px;
+}
