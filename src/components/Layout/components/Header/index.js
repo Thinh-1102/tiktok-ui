@@ -3,40 +3,27 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
     faArrowRightFromBracket,
     faCircleQuestion,
-    faCircleXmark,
     faCoins,
     faEarthAsia,
     faEllipsisVertical,
     faGear,
-    faInbox,
     faKeyboard,
-    faMagnifyingGlass,
-    faMessage,
     faPlus,
-    faSpinner,
     faUser,
 } from '@fortawesome/free-solid-svg-icons';
-import { useEffect, useState } from 'react';
-import HeadlessTippy from '@tippyjs/react/headless';
 import Tippy from '@tippyjs/react';
 import 'tippy.js/dist/tippy.css';
 
 import Button from '~/components/Button';
-import AccountItem from '~/components/Layout/AccountItem';
-import { Wrapper as WrapperPopper } from '~/components/Popper/index.js';
 import Menu from '~/components/Popper/Menu';
 import images from '~/assets/images';
+import Image from '~/components/Image';
+import { MessageBoxIcon, MessageIcon } from '~/components/Icons';
 import styles from './Header.module.scss';
+import Search from './Search';
 
 const cx = classNames.bind(styles);
 function Header() {
-    const [searchResult, setSearchResult] = useState([]);
-    useEffect(() => {
-        setTimeout(() => {
-            setSearchResult([]);
-        }, 0);
-    }, []);
-
     // handleMenuChange
     const handleMenuChange = (menuItem) => {
         switch (menuItem.type) {
@@ -118,44 +105,18 @@ function Header() {
                     <img src={images.logo} alt="logo" />
                 </div>
 
-                <HeadlessTippy
-                    visible={searchResult.length > 0}
-                    interactive
-                    render={(attrs, content) => (
-                        <div className={cx('search-result')} tabIndex="-1" {...attrs}>
-                            <WrapperPopper>
-                                <h4 className={cx('search-title')}>tài khoản</h4>
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                                <AccountItem />
-                            </WrapperPopper>
-                        </div>
-                    )}
-                >
-                    <div className={cx('search')}>
-                        <input placeholder="Tìm kiếm tài khoản và video" spellCheck={false} />
-                        <button className={cx('clear')}>
-                            <FontAwesomeIcon icon={faCircleXmark} />
-                        </button>
-
-                        <FontAwesomeIcon className={cx('loading')} icon={faSpinner} />
-                        <button className={cx('search-btn')}>
-                            <FontAwesomeIcon icon={faMagnifyingGlass} />
-                        </button>
-                    </div>
-                </HeadlessTippy>
+                <Search />
                 <div className={cx('action')}>
                     {currenUser ? (
                         <>
                             <Tippy delay={[0, 200]} placement="bottom" content="Tin nhắn">
                                 <button className={cx('action-btn')}>
-                                    <FontAwesomeIcon icon={faInbox} />
+                                    <MessageIcon />
                                 </button>
                             </Tippy>
                             <Tippy delay={[0, 200]} placement="bottom" content="Hộp thư">
                                 <button className={cx('action-btn')}>
-                                    <FontAwesomeIcon icon={faMessage} />
+                                    <MessageBoxIcon />
                                 </button>
                             </Tippy>
                         </>
@@ -170,7 +131,7 @@ function Header() {
 
                     <Menu items={currenUser ? userMenu : MENU_ITEM} onChange={handleMenuChange}>
                         {currenUser ? (
-                            <img
+                            <Image
                                 className={cx('user-avatar')}
                                 src="https://m.media-amazon.com/images/M/MV5BMTY2ODQ3NjMyMl5BMl5BanBnXkFtZTcwODg0MTUzNA@@._V1_.jpg"
                                 alt=""

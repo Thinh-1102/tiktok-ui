@@ -1,0 +1,99 @@
+.search,
+.search-result {
+    width: var(--search-width);
+}
+
+.search {
+    position: relative;
+    height: var(--search-hight);
+    background-color: #f1f1f2;
+    border-radius: var(--search-border-radius);
+    display: flex;
+    padding-left: 16px;
+    border: 1.5px solid transparent;
+
+    input {
+        font-size: 1.6rem;
+        padding: 12px 0;
+        line-height: 22px;
+        border: none;
+        background-color: transparent;
+        color: var(--black);
+        flex: 1;
+        caret-color: var(--privary);
+
+        &::placeholder {
+            color: #757575;
+        }
+    }
+
+    input:not(:placeholder-shown) ~ .search-btn {
+        color: #4c4e57;
+    }
+
+    &::after {
+        content: '';
+        position: absolute;
+        top: var(--search-top-spacer);
+        right: var(--search-icon-width);
+        height: calc(var(--search-hight) - var(--search-top-spacer) * 2);
+        width: 1px;
+        background-color: rgba(22, 24, 35, 0.12);
+    }
+
+    &:focus-within {
+        border-color: rgba(22, 24, 35, 0.2);
+    }
+}
+
+.search-title {
+    color: rgba(22, 24, 35, 0.5);
+    font-size: 1.6rem;
+    font-weight: 600;
+    padding: 5px 12px;
+}
+
+.clear,
+.loading {
+    position: absolute;
+    right: calc(var(--search-icon-width) + 16px);
+    top: 50%;
+    transform: translateY(-50%);
+    color: #a6a7ac;
+    font-size: 1.6rem;
+    cursor: pointer;
+    background-color: transparent;
+}
+
+.loading {
+    animation: spinner linear 1s infinite;
+}
+
+@keyframes spinner {
+    from {
+        transform: translateY(-50%) rotate(0);
+    }
+    to {
+        transform: translateY(-50%) rotate(360deg);
+    }
+}
+
+.search-btn {
+    border-bottom-right-radius: var(--search-border-radius);
+    border-top-right-radius: var(--search-border-radius);
+    border: none;
+    width: var(--search-icon-width);
+    height: 100%;
+    background-color: transparent;
+    font-size: 1.8rem;
+    color: #a6a7ac;
+
+    &:hover {
+        background-color: rgba(22, 24, 35, 0.03);
+        cursor: pointer;
+    }
+
+    &:active {
+        background-color: #e4e4e6;
+    }
+}

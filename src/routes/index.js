@@ -9,7 +9,7 @@ export const publicRoutes = [
     // những page không cần đăng nhập vẫn xem được
     { path: '/', component: Home },
     { path: '/following', component: Following },
-    { path: '/profile', component: Profile },
+    { path: '/@:nickname', component: Profile },
     { path: '/upload', component: Upload, layout: HeaderOnly },
 ];
 
