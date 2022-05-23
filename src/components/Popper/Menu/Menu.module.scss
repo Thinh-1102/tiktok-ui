@@ -22,3 +22,23 @@
 .menu-popper {
     padding-bottom: 8px;
 }
+
+// header
+.header {
+    position: relative;
+    height: 50px;
+    margin-top: -8px;
+}
+
+.back-btn {
+    width: 50px;
+    height: 50px;
+}
+
+.header-title {
+    line-height: 50px;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

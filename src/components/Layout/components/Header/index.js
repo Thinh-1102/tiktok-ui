@@ -29,10 +29,41 @@ function Header() {
         }, 0);
     }, []);
 
+    // handleMenuChange
+    const handleMenuChange = (menuItem) => {
+        switch (menuItem.type) {
+            case 'language':
+                // handle language
+                break;
+            default:
+                break;
+        }
+    };
+
     const MENU_ITEM = [
         {
             icon: <FontAwesomeIcon icon={faEarthAsia} />,
             title: 'Tiếng Việt',
+            children: {
+                title: 'Ngôn ngữ',
+                data: [
+                    {
+                        type: 'language',
+                        code: 'Vi',
+                        title: 'Tiếng Việt',
+                    },
+                    {
+                        type: 'language',
+                        code: 'Vi',
+                        title: 'English',
+                    },
+                    {
+                        type: 'language',
+                        code: 'Vi',
+                        title: 'Nihongo',
+                    },
+                ],
+            },
         },
         {
             icon: <FontAwesomeIcon icon={faCircleQuestion} />,
@@ -84,7 +115,7 @@ function Header() {
                         Tải lên
                     </Button>
                     <Button primary>Đăng nhập</Button>
-                    <Menu items={MENU_ITEM}>
+                    <Menu items={MENU_ITEM} onChange={handleMenuChange}>
                         <button>
                             <FontAwesomeIcon className={cx('listIcon')} icon={faEllipsisVertical} />
                         </button>
