@@ -5,7 +5,7 @@
     --privary: #fe2c55;
     --black: #000;
     --while: #fff;
-    --text-color: #333;
+    --text-color: #161823;
 
     // DefaultLayout
     --default-layout-header-height: 60px;
@@ -28,6 +28,7 @@ body {
     font-size: 1.6rem;
     line-height: 1.5;
     text-rendering: optimizeSpeed;
+    color: var(--text-color);
 }
 
 input,
@@ -42,4 +43,22 @@ i,
 a[href] {
     color: var(--text-color);
     text-decoration: none;
+}
+
+body {
+    .tippy-box {
+        border-radius: 8px;
+        font-weight: 600;
+        font-size: 1.6rem;
+        line-height: 2.2rem;
+        background-color: rgba(84, 84, 84, 0.92);
+    }
+
+    .tippy-content {
+        padding: 8px 9px;
+    }
+
+    .tippy-arrow {
+        color: rgba(84, 84, 84, 0.92);
+    }
 }

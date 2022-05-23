@@ -119,3 +119,25 @@
     height: 20px;
     padding: 4px 8px;
 }
+
+.action-btn {
+    width: 32px;
+    height: 32px;
+    font-size: 2rem;
+    padding: 4px;
+    cursor: pointer;
+    color: rgba(22, 24, 35, 1);
+
+    + .action-btn {
+        margin-left: 16px;
+    }
+}
+
+.user-avatar {
+    width: 32px;
+    height: 32px;
+    border-radius: 550px;
+    object-fit: cover;
+    margin-left: 24px;
+    cursor: pointer;
+}

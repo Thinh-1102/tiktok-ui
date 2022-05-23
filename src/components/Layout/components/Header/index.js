@@ -1,17 +1,25 @@
 import classNames from 'classnames/bind';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import {
+    faArrowRightFromBracket,
     faCircleQuestion,
     faCircleXmark,
+    faCoins,
     faEarthAsia,
     faEllipsisVertical,
+    faGear,
+    faInbox,
     faKeyboard,
     faMagnifyingGlass,
+    faMessage,
     faPlus,
     faSpinner,
+    faUser,
 } from '@fortawesome/free-solid-svg-icons';
-import Tippy from '@tippyjs/react/headless';
 import { useEffect, useState } from 'react';
+import HeadlessTippy from '@tippyjs/react/headless';
+import Tippy from '@tippyjs/react';
+import 'tippy.js/dist/tippy.css';
 
 import Button from '~/components/Button';
 import AccountItem from '~/components/Layout/AccountItem';
@@ -76,6 +84,33 @@ function Header() {
         },
     ];
 
+    const userMenu = [
+        {
+            icon: <FontAwesomeIcon icon={faUser} />,
+            title: 'Xem hồ sơ',
+            to: '/@hoaa',
+        },
+        {
+            icon: <FontAwesomeIcon icon={faCoins} />,
+            title: 'Nhận xu',
+            to: '/getcoin',
+        },
+        {
+            icon: <FontAwesomeIcon icon={faGear} />,
+            title: 'Cài đặt',
+            to: '/setting',
+        },
+        ...MENU_ITEM,
+        {
+            icon: <FontAwesomeIcon icon={faArrowRightFromBracket} />,
+            title: 'Đăng xuất',
+            to: '/logout',
+            separate: true,
+        },
+    ];
+
+    const currenUser = true;
+
     return (
         <header className={cx('wrapper')}>
             <div className={cx('inner')}>
@@ -83,7 +118,7 @@ function Header() {
                     <img src={images.logo} alt="logo" />
                 </div>
 
-                <Tippy
+                <HeadlessTippy
                     visible={searchResult.length > 0}
                     interactive
                     render={(attrs, content) => (
@@ -109,16 +144,42 @@ function Header() {
                             <FontAwesomeIcon icon={faMagnifyingGlass} />
                         </button>
                     </div>
-                </Tippy>
+                </HeadlessTippy>
                 <div className={cx('action')}>
-                    <Button text leftIcon={<FontAwesomeIcon icon={faPlus} />}>
-                        Tải lên
-                    </Button>
-                    <Button primary>Đăng nhập</Button>
-                    <Menu items={MENU_ITEM} onChange={handleMenuChange}>
-                        <button>
-                            <FontAwesomeIcon className={cx('listIcon')} icon={faEllipsisVertical} />
-                        </button>
+                    {currenUser ? (
+                        <>
+                            <Tippy delay={[0, 200]} placement="bottom" content="Tin nhắn">
+                                <button className={cx('action-btn')}>
+                                    <FontAwesomeIcon icon={faInbox} />
+                                </button>
+                            </Tippy>
+                            <Tippy delay={[0, 200]} placement="bottom" content="Hộp thư">
+                                <button className={cx('action-btn')}>
+                                    <FontAwesomeIcon icon={faMessage} />
+                                </button>
+                            </Tippy>
+                        </>
+                    ) : (
+                        <>
+                            <Button text leftIcon={<FontAwesomeIcon icon={faPlus} />}>
+                                Tải lên
+                            </Button>
+                            <Button primary>Đăng nhập</Button>
+                        </>
+                    )}
+
+                    <Menu items={currenUser ? userMenu : MENU_ITEM} onChange={handleMenuChange}>
+                        {currenUser ? (
+                            <img
+                                className={cx('user-avatar')}
+                                src="https://m.media-amazon.com/images/M/MV5BMTY2ODQ3NjMyMl5BMl5BanBnXkFtZTcwODg0MTUzNA@@._V1_.jpg"
+                                alt=""
+                            />
+                        ) : (
+                            <button>
+                                <FontAwesomeIcon className={cx('listIcon')} icon={faEllipsisVertical} />
+                            </button>
+                        )}
                     </Menu>
                 </div>
             </div>
